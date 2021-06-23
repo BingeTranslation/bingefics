@@ -17,7 +17,7 @@
 
 function redirect(sessionVar){
 	setSessionVariable(sessionVar);
-	window.location=window.location+"/view_novel.html"
+	window.location=window.location+"view_novel.html"
 }
 var novelCoverUrl;
 function showCards(data){
@@ -432,7 +432,7 @@ function ifExistIn(pr,ch){
 }
 function home(){
 	sessionStorage.clear();
-	window.location="http://https://bingefics.com";
+	window.location="https://bingefics.com";
 }
 
 var text=document.querySelectorAll("#synopsys_data");
