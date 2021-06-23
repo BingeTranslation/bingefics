@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Binge Fics</title>
+<link rel="stylesheet" href="main.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script data-ad-client="ca-pub-4948806567577681" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<meta name="google-signin-client_id" content="644677952219-krdae2qc2jd58ha0fn45u17rldtbrlk7.apps.googleusercontent.com">
+<!--<meta name="google-signin-client_id" content="644677952219-n51d1kos67pgj2g638kqd3er1dibrdde.apps.googleusercontent.com">-->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<style>
+.mainBody{
+	position: absolute;
+    width: 85%;
+    transform: translate(-50%);
+    left: 50%;
+	top:100px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.fullcard{
+	background: #efefef;
+    padding: 20px;
+    border-radius: 20px;
+	display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: flex-start;
+}
+
+#novel_title{
+	font-size:48px;
+	width:100%;
+	margin-bottom:5px;
+	color:#111;
+}
+
+.fullcard:hover{
+	box-shadow:1px 1px 30px 5px;
+}
+
+@keyframes slide{
+	from{top:0;left:0}
+}
+
+@keyframes comeIn{
+	from{left:-100%;}
+}
+.fullcard img{
+	width:15em;
+	width:20em;
+}
+#card_data{
+	padding:15px;
+	float:right;
+	width:800px;
+	font-family:try;
+	font-weight:bolder;
+}
+
+#card_data span{
+	font-size:20px;
+}
+@keyframes comeIn{
+	from{left:-100%;}
+}
+.links{
+	list-style-type:none;
+	padding:0;
+	padding-top:100px;
+	width:80%;
+}
+.links td,th{
+	margin:5px;
+	padding:10px;
+	text-align:left;
+}
+#synopsis, #tbc{
+	font-size:72px;
+	font-weight:bolder;
+	color:white;
+	text-shadow:1px 1px 10px black;
+	padding:80px 0px 30px 0;
+	border-bottom:2px solid #eee; 
+	text-align:left;
+}
+.synopsys_data{
+	text-align:left;
+	color:white;
+}
+.card_btn{
+	height:100%;
+	display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+td{
+	font-weight: normal;
+    text-align: left;
+}
+</style>
+</head>
+<body>
+  <div class="header">
+	<div class="logoHolder">
+		<img class="logo" src="images/logo3.png" />
+		<span>
+	</div>
+		<ul class=log id="log">
+			<li onclick="return home()">HOME</li>
+			<!--<li id="searchHolder"><input type=text placeholder="Search by Author or Book Name"></li>-->
+				<li id="SignIn" onmouseover="document.getElementById('signOpts').style.display='block'" onmouseout="document.getElementById('signOpts').style.display='none'">
+					Log In
+					<ul class="signOpts" id="signOpts">
+						<li><div class="g-signin2" data-onsuccess="onSignIn" id="gSignIn" data-width="200px"></div></li>
+					</ul>
+				</li>
+			
+		</ul>
+		<div >
+			
+			
+		</div>
+  </div>
+  <div class="mainBody">
+		<div class="card_holdr" id="card_holder"></div>
+		<div><h1 id="synopsis">Synopsis</h1></div>
+		<div class="synopsys_data" id="synopsys_data"></div>
+		<div><h1 id="tbc">Table of Content</h1></div>
+		<div class="content" id="content">
+			<ol id="innercontent"></ol>
+		</div>
+  </div>
+  
+  
+  <div class="book_shelf"></div>
+  <div class="footer"></div>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+	<!--<script data-ad-client="ca-pub-4948806567577681" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+	<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+		 https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-storage.js"></script>
+
+
+	<script src="main.js"></script>
+  <script>
+  var novels_data={
+		novel1:{
+				name:"New Gamer's Multiverse",
+				author:"TheGodSage",
+				synopsys:"They say games are meant to end... but this one might be hard to. Zinon, a translator in his past life for fanfic called Marvel's superman, dies and is instantly disrupted in his peaceful rest by the sound of a system...<br>\"Congratulations! You have been chosen by TheGodSage to be the host of the Gamer system... Oh, wait... TheSmutSystem!\"Follow Zinon in his life of Games and debauchery, all while getting stronger to kill his good old friend TheGodSage!<br><br>",
+				img:"images/3b47adb20fbfcbb31b5684430fa8a33b.jpg",
+				chapter:0,
+				genre:'Adventure',
+				stat:"Coming Soon",
+				updated:Date(),
+				views:0,
+				likes:0
+			}
+  }
+  //showCards(novels_data);
+  showFullCard(sessionStorage.getItem("name"));
+  loadcontent(sessionStorage.getItem("name"));
+  //readOnceWithGet();
+  //saveToFirebase(novels_data);
+  
+  </script>
+  
+</body>
+</html>

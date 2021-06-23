@@ -1,0 +1,131 @@
+<html>
+	<head>
+	<title>Novel Upload</title>
+		<link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="response.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script data-ad-client="ca-pub-4948806567577681" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<meta name="google-signin-client_id" content="644677952219-krdae2qc2jd58ha0fn45u17rldtbrlk7.apps.googleusercontent.com">
+		<!--<meta name="google-signin-client_id" content="644677952219-n51d1kos67pgj2g638kqd3er1dibrdde.apps.googleusercontent.com">-->
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<style>
+			*{
+				transition:all 0.35s;
+			}
+			.container{
+				float:left;
+				list-style-type:none;
+				width:100%;
+				padding:0;
+				position:fixed;
+				transform:translateX(-50%);
+				left:51%;
+			}
+			.radio_holder{
+				float:left;
+				padding:15px 30px;
+				font-size:18px;
+				cursor:pointer;
+				color:#111;
+				width:45%;
+				border:1px solid black;
+			}
+			.form_data{
+				padding:20px;
+				box-shadow:1px 1px 30px 3px;
+				position:absolute;
+				top:120px;
+				transform:translateX(-50%);
+				left:50%;
+				width:80%;
+			}
+			input[type=text],input[type=file]{
+				padding:7px 10px;
+				width:50%;
+				font-size:20px;
+			}
+			textarea{
+				paddind:10px;
+				width:100%;
+				height:400px;
+				font-size:20px;
+				
+			}
+			#button{
+				padding:7px 10px;
+				width:100%;
+				font-size:20px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="container">
+			<li class="radio_holder" onclick="check(this.id)" id="chapter_upload">Novel Upload</li>
+			<li class="radio_holder" onclick="check(this.id)" id="novel_upload">Chapter Upload</li>
+		</ul>
+		<div class="form_data">	
+		</div>
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+			 https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-storage.js"></script>
+	
+		<script src="main.js"></script>
+		<script>
+			var provider = new firebase.auth.GoogleAuthProvider();
+			provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+			firebase.auth().languageCode = 'it';
+			firebase.auth()
+			  .signInWithPopup(provider)
+			  .then((result) => {
+				/** @type {firebase.auth.OAuthCredential} */
+				var credential = result.credential;
+
+				// This gives you a Google Access Token. You can use it to access the Google API.
+				var token = credential.accessToken;
+				// The signed-in user info.
+				var user = result.user;
+				// ...
+			  }).catch((error) => {
+				// Handle Errors here.
+				var errorCode = error.code;
+				var errorMessage = error.message;
+				// The email of the user's account used.
+				var email = error.email;
+				// The firebase.auth.AuthCredential type that was used.
+				var credential = error.credential;
+				
+			  });
+			var item;
+			function check(ele){
+				if(ele=="chapter_upload"){
+					document.getElementById(ele).style.background='#E34234';
+					document.getElementById(ele).style.color='#fff';
+					document.getElementById("novel_upload").style.background='#fff';
+					document.getElementById("novel_upload").style.color='#111';
+					document.querySelector(".form_data").innerHTML="<input type=text placeHolder=\"Novel Name\">"+
+																	"<input type=text placeHolder=\"Author Name\">"+
+																	"<input type=text placeHolder=\"Genre\">"+
+																	"<input type=text placeHolder=\"Book Status(Coming Soon/Live/Closed)\">"+
+																	"<input type=text placeHolder=\"Patreon Link\">"+
+																	"<input type=text placeHolder=\"Web Novel Link\">"+
+																	"<input type=file placeHolder=\"Cover Image\" >"+
+																	"<textarea placeHolder=\"Synopsys\" noresize></textarea><br><br><button id=\"button\" onclick=\"novel_upload(this.parentElement)\">Upload</button>";
+				}
+				else if(ele=="novel_upload"){
+					document.getElementById(ele).style.background='#E34234';
+					document.getElementById(ele).style.color='#fff';
+					document.getElementById("chapter_upload").style.background='#fff';
+					document.getElementById("chapter_upload").style.color='#111';
+					document.querySelector(".form_data").innerHTML="<input type=text placeHolder=\"Novel Name To Search...\" style=\"width:100%;\"><button id=\"button\" onclick=\"search_book(this.previousSibling.value)\">Search</button>";
+				}
+			}
+		</script>
+	</body>
+</html>

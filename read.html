@@ -1,0 +1,238 @@
+<html>
+<head>
+<title></title>
+<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="response.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<meta name="google-signin-client_id" content="644677952219-krdae2qc2jd58ha0fn45u17rldtbrlk7.apps.googleusercontent.com">
+<!--<meta name="google-signin-client_id" content="644677952219-n51d1kos67pgj2g638kqd3er1dibrdde.apps.googleusercontent.com">-->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<script data-ad-client="ca-pub-4948806567577681" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap" rel="stylesheet">
+<script src="fonts.js"></script>
+<script>
+	document.title=sessionStorage.getItem("name");
+	
+</script>
+<style>
+
+.chapters{
+	font-weight:normal;
+	font-size:15;
+	transform:translateX(-50%);
+	position:absolute;
+	width:60%;
+	height:auto;
+	left:50%;
+	top:60px;
+	border-radius:10px;
+	padding:20px 30px;
+	line-height: 2;
+}
+body{
+	background:#444;
+	overflow-y: auto;
+}
+.home_nav{
+	list-style-type:none;
+	float:right;
+}
+.home_nav li{
+	float:left;
+	padding:15px 30px;
+	font-size:18px;
+	cursor:pointer;
+	color:#eee;
+}
+.home_nav li:hover{
+	color:#fff;
+	background:#E34234;
+}
+input{
+	text-align:center;
+}
+#theme{
+	background:#222;
+	color:white;
+}
+#chapters img{
+	width:100%;
+}
+</style>
+</head>
+
+<body>
+	<div class="header">
+		<ul class="home_nav">
+			<li onclick="return home()">HOME</li>
+		</ul>
+	</div>
+	<div class="editor">
+			<ul>
+				<li><button onclick="setfontweight()" id="B">B</button></li>
+				<li><button onclick="setstyle()" id="I"><i>I</i></button></li>
+				<li><button onclick="settheme()" id="theme">Light</button></li>
+				<li><button onclick="setfontsize(parseInt(nextSibling.value - 1));nextSibling.value-=1">-</button><input onkeyup="setfontsize(parseInt(this.value))" id="fsize" value=15 size=2>
+				<button onclick="previousElementSibling.value=parseInt(previousElementSibling.value)+1;setfontsize(parseInt(previousElementSibling.value));">+</button></li>
+				<select onchange="setFont(this.value)">
+						<option value="Sans-serif">Regular</option>
+						<option value="'Merriweather', serif">Merriweather</option>
+						<option value="'Nunito Sans', sans-serif">Nunito Sans</option>
+						<option value="IndieFlower_Regular">IndieFlower Regular</option>
+						<option value="Limelight_Regular">Limelight Regular</option>
+						<option value="Poppins_Light">Poppins Light</option>
+						<option value="Poppins_LightItalic" >Poppins LightItalic</option>
+				</select>
+			</ul>
+			
+				
+		</div>
+	<div class="chapters light" id="chapters"></div>
+	<button class="like" id="like" onclick="updatelike()">&#10084;</button>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+		 https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-storage.js"></script>
+	
+	
+	<script src="main.js"></script>
+	<script>
+	var content;
+	var like;
+	var liked_novel_list=sessionStorage.getItem("liked_novels").replaceAll("\"","").replaceAll("[","").replaceAll("]","").replaceAll("\\","").split(",");
+	function checkIfLiked(){
+		for(i in liked_novel_list){
+			if(sessionStorage.getItem("name")==liked_novel_list[i]){
+				document.getElementById("like").className='like liked';
+				break;
+			}
+		}
+	}
+	
+	function updatedlikes(){
+		const dbRead=firebase.database().ref("Novels/"+sessionStorage.getItem("name"));
+		dbRead.get().then((snapshot)=>{
+			if(snapshot.exists()){
+				viewers=snapshot.val().viewers.replaceAll("\"","").replaceAll("[","").replaceAll("]","").replaceAll("\\","").split(",");
+				like=snapshot.val().likes;
+				content="<h1>"+snapshot.val().name+"</h1><h2>Synopsys</h2>"+snapshot.val().synopsys;
+				document.getElementById("chapters").innerHTML=content;
+				//console.log(snapshot.val())
+				for(i in snapshot.val().data)
+					document.getElementById("chapters").innerHTML+=snapshot.val().data[i];
+				var imglist=document.querySelectorAll("#chimage");
+				imglist.forEach((i)=>{
+					firebase.storage().ref(i.getAttribute("tempsrc")).getDownloadURL().then((url)=>{
+						i.src=url;
+					}).catch((err)=>{});
+				})
+			}
+		}).catch((err)=>{updatedlikes()})
+		firebase.database().ref("GUsers/"+sessionStorage.getItem("UserdbHandle")+"/liked_novels").get().then((snapshot)=>{
+			if(snapshot.exists()){
+				liked_novel_list=snapshot.val().replaceAll("\"","").replaceAll("[","").replaceAll("]","").replaceAll("\\","").split(",");
+				sessionStorage.setItem("liked_novels",stringify(liked_novel_list));
+				checkIfLiked();
+			}
+		}).catch((err)=>{updatedlikes()})
+		}
+	var viewers=[];
+	
+	updatedlikes();
+	if(!ifExistIn(viewers,sessionStorage.getItem("UserdbHandle"))){
+					viewers.push(sessionStorage.getItem("UserdbHandle"))
+					firebase.database().ref("Novels/"+sessionStorage.getItem("name")+"/views").set(viewers.length).then((snapshot)=>{console.log("view count updated")});
+					firebase.database().ref("Novels/"+sessionStorage.getItem("name")+"/viewers").set(stringify(viewers)).then((snapshot)=>{console.log("viewer list updated")});
+				
+				}
+	function setfontweight(){
+		if(document.getElementById("chapters").style.fontWeight=='bolder'){
+			document.getElementById("chapters").style.fontWeight='normal';
+			document.getElementById("B").style.fontWeight='normal';
+			document.getElementById("B").style.background='#fff';
+			document.getElementById("B").style.color='#000';
+			
+		}
+		else{
+			document.getElementById("chapters").style.fontWeight='bolder';
+			document.getElementById("B").style.fontWeight='bolder';
+			document.getElementById("B").style.background='#E34234';
+			document.getElementById("B").style.color='#fff';
+		}
+	}
+	
+	function setfontsize(num){
+		if(num==NaN){
+			document.getElementById("fsize").value="";
+		}
+		else if(num<=54 && num>=0){
+			document.getElementById("chapters").style.fontSize=num;
+		}
+	}
+	
+	function settheme(){
+		if(document.getElementById("theme").innerHTML=="Dark"){
+			document.getElementById("theme").innerHTML='Light';
+			document.getElementById("theme").style.background='#222';
+			document.getElementById("theme").style.color='#fff';
+			document.getElementById("chapters").className='chapters light';
+		}
+		else{
+			document.getElementById("theme").innerHTML="Dark";
+			document.getElementById("theme").style.background='#fff';
+			document.getElementById("theme").style.color='#111';
+			document.getElementById("chapters").className='chapters dark';
+		}
+	}
+	
+	function setstyle(){
+		if(document.getElementById("chapters").style.fontStyle=='italic'){
+			document.getElementById("chapters").style.fontStyle='normal';
+			document.getElementById("I").style.background='#fff';
+			document.getElementById("I").style.color='#000';
+			
+		}
+		else{
+			document.getElementById("chapters").style.fontStyle='italic';
+			document.getElementById("I").style.background='#E34234';
+			document.getElementById("I").style.color='#fff';
+		}
+	}
+	
+	function setFont(font){
+		document.getElementById("chapters").style.fontFamily=font;
+		var elelist=document.querySelectorAll("#chdata");
+		for(i in elelist){
+			elelist[i].style.fontFamily=font;
+		}
+	}
+	function updatelike(){
+		if(document.getElementById("like").className=='like'){
+			if(!existIn(liked_novel_list,sessionStorage.getItem("name")))
+				liked_novel_list.push(sessionStorage.getItem("name"));
+			firebase.database().ref("GUsers/"+sessionStorage.getItem("UserdbHandle")+"/liked_novels").set(stringify(liked_novel_list))
+			updatedlikes();
+			firebase.database().ref("Novels/"+sessionStorage.getItem("name")+"/likes").set(like+1)
+			.then(function(){document.getElementById("like").className='like liked';})
+			updatedlikes();
+		}
+		else{
+			liked_novel_list.splice(liked_novel_list.indexOf(sessionStorage.getItem("name"),1))
+			firebase.database().ref("GUsers/"+sessionStorage.getItem("UserdbHandle")+"/liked_novels").set(stringify(liked_novel_list))
+			updatedlikes();
+			firebase.database().ref("Novels/"+sessionStorage.getItem("name")+"/likes").set(like-1)
+			.then(function(){document.getElementById("like").className='like'})
+		}
+	}
+	
+	</script>
+
+</body>
+</html>

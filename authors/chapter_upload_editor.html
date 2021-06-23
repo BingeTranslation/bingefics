@@ -1,0 +1,264 @@
+<html>
+	<head>
+		<title>Chapter Upload</title>
+<style>
+*{
+	margin:0;
+}
+.editor_nav button, .editor_nav input{
+	padding:5px 10px;
+	background:#ddd;
+	border:1px solid;
+	text-align:center;
+}
+.text_area{
+	position:relative;
+	left:50px;
+	border:1px solid black;
+	padding:20px;
+	width:1000px;
+	height:auto;
+}
+ul{
+	list-style-type:none;
+	padding:0;
+}
+.tag_holder{
+	padding:2px;
+	margin:0;
+}
+.tag_labels li{
+	width:100%;
+	padding:10px;
+	cursor:pointer;
+	margin:0;
+}
+
+span{
+	cursor:pointer;
+}
+.rmtag{
+	border-radius:10px;
+	padding:0px 4px;
+	border:1px solid black;
+	margin:2px;
+}
+.tag_labels{
+	display:none;
+	
+}
+.tag_holder{
+	position:relative;
+	padding:0px 0px 0px 0px;
+	width:auto;
+}
+.tags{
+	display:flex;
+	padding:5px;
+	width:100%;
+	background:white;
+	float:right;
+}
+
+.genre_holder{
+	padding:2px;
+	margin:0;
+}
+.genre_labels li{
+	width:100%;
+	padding:10px;
+	cursor:pointer;
+	margin:0;
+}
+.genre_labels li:hover{
+	background:#fae23b;
+}
+.genre_labels ul{
+	overflow-y:auto;
+	overflow-x:hidden;
+	margin-top:-2px;
+	height:200px;
+	width:200px;
+	float:right;
+}
+span{
+	cursor:pointer;
+}
+.rmgenre{
+	border-radius:10px;
+	padding:0px 4px;
+	border:1px solid black;
+	margin:2px;
+}
+.genre_labels{
+	display:none;
+	
+}
+.genre_holder{
+	position:relative;
+	padding:0px 0px 0px 0px;
+	width:auto;
+}
+.genres{
+	display:flex;
+	padding:5px;
+	width:100%;
+	background:white;
+	float:right;
+}
+#urlfield{
+	width:300px;
+	padding:5px;
+	border:1px solid black;
+}
+chapter_image{
+	width:200px;
+	margin:5px;
+}
+.editor_nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+input[type=text],input[type=file]{
+				padding:7px 10px;
+				width:50%;
+				font-size:20px;
+			}
+.chapter_metadata {
+    display: flex;
+    flex-wrap: wrap;
+}
+select {
+    padding: 10px;
+}
+
+.chapter_nav {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.chapter_metadata .synopsys_area{
+	height:50px;
+	width:100%;
+	margin:0;
+	border:1px solid;
+}
+#fifty{
+	width:50%;
+}
+</style>
+	</head>
+	<body>
+		<div class="chapter_nav">
+			<div class="chapter_metadata">
+				<input type=text placeHolder="Title" id="chtitle">
+				<input type=file id="coverimage">
+				<div class="genres">
+					<span >genres:</span>
+					<div class="genre_holder" id="genre_holdr"></div>
+						<select onchange="addgenre(this.value)">
+							<option >Adventure</option>
+							<option >Urban</option>
+							<option >Fantasy</option>
+							<option >History</option>
+							<option >Horror</option>
+							<option >Sci-fi</option>
+							<option >Sports</option>
+							<option >Games</option>
+							<option >Eastern</option>
+							<option >Realistic</option>
+							<option >Action</option>
+							<option >War</option>
+							<option >Books & Literature</option>
+							<option >Celebrities & Real People</option>	
+							<option >Music & Band</option>	
+							<option >Theater</option>	
+							<option >Video Games</option>	
+							<option >Anime & Comics</option>	
+							<option >Movies</option>	
+						</select>
+					
+				</div>
+				<div class="tags">
+					<span>Tags:</span>
+					<div class="tag_holder" id="tag_holdr"></div>
+						<select onchange="addtag(this.value)">
+								<option >Adventure</option>
+								<option >Romance</option>
+								<option >Action</option>
+								<option >Reincarnation</option>
+								<option >Horror</option>
+								<option >Sci-fi</option>
+								<option >Sports</option>
+								<option >Games</option>
+								<option >Eastern</option>
+								<option >Realistic</option>
+								<option >Cultivation</option>
+								<option >War</option>
+								<option >Teen</option>
+								<option >LGBT+</option>	
+								<option >Harem</option>	
+								<option >Comedy</option>	
+								<option >Mordern</option>
+						</select>	
+				</div>
+			
+				<select id="fifty">
+					<option value="Coming Soon">Coming Soon</option>
+					<option value="Live">Live</option>
+					<option value="Closed">Closed</option>
+				</select>
+				<select id="fifty">
+					<option value="Male Lead">Male Lead</option>
+					<option value="Female Lead">Female Lead</option>
+					<option value="Closed">Closed</option>
+				</select>
+				<input type=text placeHolder="Patreon Link">
+				<input type=text placeHolder="Web Novel Link">
+				<h2>Synopsis</h2>
+				<div class="synopsys_area" id="synopsis_area" contenteditable=true></div>
+			</div>
+		</div>
+			
+			<div class="editor_nav">
+				<button onclick="setUrl('img')">+IMG</button>
+				<button onclick="setUrl('link')">+LINK</button>
+				<button onclick="qoute('formatBlock','<h1>');colorize(this)">"</button>
+				<button onclick="format('bold');colorize(this)"><b>B</b></button>
+				<button onclick="format('italic');colorize(this)"><i>I</i></button>
+				<button onclick="format('underline');colorize(this)"><u>U</u></button>
+				<button onclick="format('justifycenter')">center</button>
+				<button onclick="format('justifyleft')">left</button>
+				<button onclick="format('justifyright')">right</button>
+				<button onclick="setfontsize(parseInt(nextSibling.value - 1));nextSibling.value-=1">-</button>
+				<input onkeyup="setfontsize(parseInt(this.value))" id="fsize" value=1 size=1>
+				<button onclick="previousElementSibling.value=parseInt(previousElementSibling.value)+1;setfontsize(parseInt(previousElementSibling.value));">+</button>
+				<button onclick="format('insertorderedlist');colorize(this);">ordered</button>
+				<button onclick="format('insertunorderedlist');colorize(this);">unordered</button>
+				<button onclick="format('strikeThrough');colorize(this)">strike</button>
+				<button onclick="format('subscript');colorize(this)">sub</button>
+				<button onclick="format('superscript');colorize(this)">sup</button>
+				<input type=file id='img&vids' onchange="getReaderurl(this)">
+				<input id=urlfield placeHolder="All links will be pasted here">
+			</div>
+			<div class=text_area id=text_area onkeydown="(e)=>{checkEnterKey(e)}"></div>
+		</div>
+		
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+			 https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-storage.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+		<script src="../main.js"></script>
+		<script src="author.js">
+		</script>
+	</body>
+</html>

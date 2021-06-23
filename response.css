@@ -1,0 +1,104 @@
+@media(max-width:1300px){
+	.card{
+	width:980px;
+	padding:10px;
+	height:500px;
+	animation:slide 2s;
+	cursor:pointer;
+	border-radius:20px 20px 20px 20px;
+	margin:5px;
+	background:#dcdcdc;
+	z-index:2;
+	
+	
+}
+.card:hover{
+	box-shadow:1px 1px 30px 5px;
+}
+
+@keyframes slide{
+	from{top:0;left:0}
+}
+
+.card_holder{
+	position:absolute;
+	top:10%;
+	border-radius:10px 10px 10px 10px;
+	padding:12px;
+	width:98%;
+	border:1px solid black;
+	animation:comeIn 1s;
+}
+.card img{
+	width:300px;
+}
+#card_data{
+	padding:15px;
+	float:right;
+	width:600px;
+	font-weight:bolder;
+}
+
+#card_data span{
+	font-size:15px;
+}
+@keyframes comeIn{
+	from{left:-100%;}
+}
+.card2{
+	left:0px;
+	top:0px;
+}
+.card3{
+	left:0px;
+	top:0px;
+}
+
+.novel_card_btn{
+	width:300px;
+	padding:15px;
+	color:white;
+	background: #FFB75E;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #ED8F03, #FFB75E);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #ED8F03, #FFB75E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	font-size:15px;
+	font-weight:bolder;
+	border:none;
+	border-radius:30px;
+}
+.novel_card_btn:hover{
+	opacity:0.8;
+}
+#novel_title{
+	font-size:20px;
+	margin-bottom:20px;
+}
+#novel_title sub{
+	font-size:15px;
+	font-weight:normal;
+}
+.card ul{
+	margin:0;
+	padding:0;
+	width:100%;
+}
+.card li{
+	float:left;
+	padding:10px;
+	
+}
+#synopsys{
+	margin-bottom:10px;
+}
+.card_btn button{
+	margin:1px;
+}
+#share{
+	background: #76b852;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #8DC26F, #76b852);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #8DC26F, #76b852); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+}
+
+

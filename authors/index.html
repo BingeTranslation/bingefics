@@ -1,0 +1,270 @@
+<html>
+	<head><title>Author</title>
+		<link rel="stylesheet" href="../main.css">
+		<meta name="google-signin-client_id" content="644677952219-krdae2qc2jd58ha0fn45u17rldtbrlk7.apps.googleusercontent.com">
+		<!--<meta name="google-signin-client_id" content="644677952219-n51d1kos67pgj2g638kqd3er1dibrdde.apps.googleusercontent.com">-->
+
+		<script data-ad-client="ca-pub-4948806567577681" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+<style>
+h1{
+	color:white;
+}
+			*{
+				transition:all 0.35s;
+			}
+			.container{
+				float:left;
+				list-style-type:none;
+				width:100%;
+				padding:0;
+				position:fixed;
+				transform:translateX(-50%);
+				left:51%;
+			}
+			.radio_holder{
+				float:left;
+				padding:15px 30px;
+				font-size:18px;
+				cursor:pointer;
+				color:#111;
+				width:45%;
+				border:1px solid black;
+			}
+			.form_data{
+				padding:20px;
+				box-shadow:1px 1px 30px 3px;
+				position:relative;
+				top:120px;
+				transform:translateX(-50%);
+				left:50%;
+				width:80%;
+				background:#fff;
+				display: flex;
+				flex-wrap: wrap;
+				flex-direction: column;
+				align-items: stretch;
+}
+			}
+			input[type=text],input[type=file]{
+				padding:7px 10px;
+				width:50%;
+				font-size:20px;
+			}
+			textarea{
+				paddind:10px;
+				width:100%;
+				height:400px;
+				font-size:20px;
+				
+			}
+			#button{
+				padding:7px 10px;
+				width:100%;
+				font-size:20px;
+			}
+			.addbook{
+				width:300px;
+				height:400px;
+				border-radius:10px;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				align-items: center;
+				background:#efefef;
+				justify-content:center;
+				cursor:pointer;
+			}
+			.addbook h1{
+				color:#333;
+				font-size:72px;
+			}
+			.addbook h1:hover{
+				font-size:80px;
+			}
+			input[type=text],input[type=file]{
+				padding:7px 10px;
+				width:50%;
+				font-size:20px;
+			}
+			#selectedbook{
+				background:transparent;
+				width:100%;
+				border:none;
+			}
+			*{
+	margin:0;
+}
+.editor_nav button, .editor_nav input{
+	padding:5px 10px;
+	background:#ddd;
+	border:1px solid;
+	text-align:center;
+}
+.text_area{
+	position:relative;
+	border:1px solid black;
+	padding:30px;
+	overflow:auto;
+	height:auto;
+}
+ul{
+	list-style-type:none;
+	padding:0;
+}
+.tag_holder{
+	padding:2px;
+	margin:0;
+}
+
+span{
+	cursor:pointer;
+}
+.rmtag{
+	border-radius:10px;
+	padding:0px 4px;
+	border:1px solid black;
+	margin:2px;
+}
+.tag_labels{
+	display:none;
+	
+}
+.tag_holder{
+	position:relative;
+	padding:0px 0px 0px 0px;
+	width:400px;
+}
+.tags{
+	display:flex;
+	padding:5px;
+	width:400px;
+	background:white;
+	float:right;
+	align-items: flex-start;
+}
+
+.genre_holder{
+	padding:2px;
+	margin:0;
+}
+.genre_labels li{
+	width:100%;
+	padding:10px;
+	cursor:pointer;
+	margin:0;
+}
+
+span{
+	cursor:pointer;
+}
+.rmgenre{
+	border-radius:10px;
+	padding:0px 4px;
+	border:1px solid black;
+	margin:2px;
+}
+.genre_labels{
+	display:none;
+	
+}
+.genre_holder{
+	position:relative;
+	padding:0px 0px 0px 0px;
+	width:400px;
+}
+.genres{
+	display:flex;
+	padding:5px;
+	width:400px;
+	background:white;
+	float:right;
+	align-items: flex-start;
+}
+#urlfield{
+	width:100%;
+	padding:5px;
+	border:1px solid black;
+	background:white;
+	text-align:left;
+}
+chapter_image{
+	width:200px;
+	margin:5px;
+}
+.editor_nav {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.chapter_metadata {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chapter_nav {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.chapter_metadata {
+    display: flex;
+    flex-wrap: wrap;
+}
+select {
+    padding: 10px;
+}
+
+.chapter_nav {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.chapter_metadata .synopsys_area{
+	height:auto;
+	width:100%;
+	margin:0;
+	padding:20px;
+	font-size:15px;
+	border:1px solid;
+}
+#fifty{
+	width:50%;
+}
+.chimageholder{
+	width:100%;
+}
+#coverpreview{
+	width:300px;
+	height:400px;
+	border:1px dotted grey;
+}
+</style>
+	</head>
+	<body>
+		<div id="a_name"><img src="" alt="error loading Image" id="authorPic">Hi!</div>
+		<div id=your_books>
+			<h1>Your Books</h1>
+			<div class="mybookcontainer" id="mbc">
+			<div  class=addbook onclick="newbook()"><h1>+</h1></div>
+			</div>
+		</div>
+		
+		<div class="form_data" id="form_data">	</div>
+		<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+			 https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-storage.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+		<script src="../main.js"></script>
+		<script src="author.js"></script>
+	</body>
+</html>
