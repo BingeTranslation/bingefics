@@ -4,7 +4,8 @@
 <link rel="stylesheet" href="main.css">
 <link rel="stylesheet" href="response.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<meta name="google-signin-client_id" content="644677952219-n51d1kos67pgj2g638kqd3er1dibrdde.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="644677952219-krdae2qc2jd58ha0fn45u17rldtbrlk7.apps.googleusercontent.com">
+<!--<meta name="google-signin-client_id" content="644677952219-n51d1kos67pgj2g638kqd3er1dibrdde.apps.googleusercontent.com">-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <script data-ad-client="ca-pub-4948806567577681" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
@@ -18,7 +19,7 @@
 
 .chapters{
 	font-weight:normal;
-	font-size:15;
+	font-size:20px;
 	transform:translateX(-50%);
 	position:absolute;
 	width:60%;
@@ -69,14 +70,12 @@ input{
 	</div>
 	<div class="editor">
 			<ul>
-				<li><button onclick="setfontweight()" id="B">B</button></li>
-				<li><button onclick="setstyle()" id="I"><i>I</i></button></li>
 				<li><button onclick="settheme()" id="theme">Light</button></li>
-				<li><button onclick="setfontsize(parseInt(nextSibling.value - 1));nextSibling.value-=1">-</button><input onkeyup="setfontsize(parseInt(this.value))" id="fsize" value=15 size=2>
+				<li><button onclick="setfontsize(parseInt(nextSibling.value - 1));nextSibling.value-=1">-</button><input onkeyup="setfontsize(parseInt(this.value))" id="fsize" value=20 size=2 readonly>
 				<button onclick="previousElementSibling.value=parseInt(previousElementSibling.value)+1;setfontsize(parseInt(previousElementSibling.value));">+</button></li>
 				<select onchange="setFont(this.value)">
-						<option value="Sans-serif">Regular</option>
 						<option value="'Merriweather', serif">Merriweather</option>
+						<option value="Sans-serif">Regular</option>
 						<option value="'Nunito Sans', sans-serif">Nunito Sans</option>
 						<option value="IndieFlower_Regular">IndieFlower Regular</option>
 						<option value="Limelight_Regular">Limelight Regular</option>
@@ -169,10 +168,13 @@ input{
 	
 	function setfontsize(num){
 		if(num==NaN){
-			document.getElementById("fsize").value="";
+			document.getElementById("fsize").value=15;
 		}
 		else if(num<=54 && num>=0){
-			document.getElementById("chapters").style.fontSize=num;
+			const eles=document.querySelectorAll(".chapters p span")
+			for(i in eles){
+				eles[i].style.fontSize=num;
+			}
 		}
 	}
 	
@@ -204,7 +206,9 @@ input{
 			document.getElementById("I").style.color='#fff';
 		}
 	}
-	
+	document.onload.then((e)=>{
+		setFont("'Merriweather', serif");
+	})
 	function setFont(font){
 		document.getElementById("chapters").style.fontFamily=font;
 		var elelist=document.querySelectorAll("#chdata");
@@ -230,7 +234,6 @@ input{
 			.then(function(){document.getElementById("like").className='like'})
 		}
 	}
-	
 	</script>
 
 </body>
