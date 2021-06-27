@@ -26,11 +26,11 @@ const chapter_upload=(ele)=>{
 			const chcontent="<h1>Chapter: "+(count+1)+" - "+dataArray[1].value+"</h1><br><br><p id=\'chdata\'>"+document.getElementById("text_area").innerHTML+"</p><br><br><br>";
 			data=content.val().data;
 			data+=chcontent;
-			firebase.database().ref("Novels/"+name+"/updated").set(Date()).then((snapshot)=>{console.log("time updated")});
-			firebase.database().ref("Novels/"+name+"/data/Chapter_"+(count+1)).set(data).then((a)=>{console.log("chapter content updated");
+			firebase.database().ref("Novels/"+name+"/updated").set(Date()).then((snapshot)=>{alert("time updated")});
+			firebase.database().ref("Novels/"+name+"/data/Chapter_"+(count+1)).set(data).then((a)=>{alert("chapter content updated");
 			console.log(Object.keys(content.val().data).length);
 			console.log(content.val().data);
-			firebase.database().ref("Novels/"+name+"/chapter").set(count+1).then((snapshot)=>{console.log("chapter count updated")});});
+			firebase.database().ref("Novels/"+name+"/chapter").set(parseInt(count)+1).then((snapshot)=>{alert("chapter count updated")});});
 		
 	}).catch((err)=>{console.log(err)});
 }
@@ -195,7 +195,8 @@ const getauthornovels=(data)=>{
 			
 			
 var provider = new firebase.auth.GoogleAuthProvider();
-			firebase.auth().languageCode = 'en';
+			provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+			firebase.auth().languageCode = 'it';
 			firebase.auth()
 			  .signInWithPopup(provider)
 			  .then((result) => {
