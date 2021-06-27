@@ -50,7 +50,7 @@ const novelupload=(ele)=>{
 		genre:stringify(genrelist),
 		tags:stringify(taglist),
 		chapter:0,
-		data:"",
+		data:new Object(),
 	}
 	console.log(data);
 	firebase.database().ref("Novels/"+data.name.replaceAll(" ","_")).set(data).then((e)=>{
@@ -195,8 +195,7 @@ const getauthornovels=(data)=>{
 			
 			
 var provider = new firebase.auth.GoogleAuthProvider();
-			provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-			firebase.auth().languageCode = 'it';
+			firebase.auth().languageCode = 'en';
 			firebase.auth()
 			  .signInWithPopup(provider)
 			  .then((result) => {
