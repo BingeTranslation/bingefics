@@ -287,7 +287,7 @@ function GaccExist(profile,data){
 				return true;
 			}
 		}
-		firebase.database().ref("GUsers/"+profile.getEmail().replaceAll('.','(dot)')).set(data);
+		firebase.database().ref("GUsers/"+profile.replaceAll('.','(dot)')).set(data);
 		console.log("hi there!!")
 		return false;
 	})
