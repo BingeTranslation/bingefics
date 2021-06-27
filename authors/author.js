@@ -195,8 +195,7 @@ const getauthornovels=(data)=>{
 			
 			
 var provider = new firebase.auth.GoogleAuthProvider();
-			provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-			firebase.auth().languageCode = 'it';
+			firebase.auth().languageCode = 'en';
 			firebase.auth()
 			  .signInWithPopup(provider)
 			  .then((result) => {
