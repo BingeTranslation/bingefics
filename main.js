@@ -1,4 +1,23 @@
-
+const setcontentdata=(ele)=>{
+	if(ele=="synopsis"){
+		document.getElementById(ele).style.borderBottom="2px solid #eee";
+		document.getElementById("tbc").style.border="none";
+		document.getElementById("synopsys_data").style.width='100%';
+		document.getElementById("synopsys_data").style.color='#fff';
+		document.getElementById("content").style.width='0%';
+		document.getElementById("content").style.color='transparent';
+		
+	}
+	else{
+		document.getElementById(ele).style.borderBottom="2px solid #eee";
+		document.getElementById("synopsis").style.border="none";
+		document.getElementById("synopsys_data").style.width='0%';
+		document.getElementById("synopsys_data").style.color='transparent';
+		document.getElementById("content").style.width='100%';
+		document.getElementById("content").style.color='#000';
+		
+	}
+}
 	  // Your web app's Firebase configuration
 	  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 	  var firebaseConfig = {
@@ -17,7 +36,7 @@
 
 function redirect(sessionVar){
 	setSessionVariable(sessionVar);
-	window.location=window.location+"view_novel.html"
+	window.location=window.location+"/view_novel.html"
 }
 var novelCoverUrl;
 function showCards(data){
@@ -31,7 +50,7 @@ function showCards(data){
 						"<div><center><h1 id='novel_title'>"+data[keyid].name+"</h1></center></div></div>";
 					  //console.log("done");
 					}).catch((err)=>{
-						division.innerHTML+="<div class=\"card_nav\"><div class='card' onclick=\"redirect(this.querySelector('#novel_title').innerHTML.replaceAll(' ','_'))\"><img src='' alt='Try Reloding page,Image error'><div id='card_data'></div>"+
+						division.innerHTML+="<a href=\"\"><div class=\"card_nav\"><div class='card' onclick=\"redirect(this.querySelector('#novel_title').innerHTML.replaceAll(' ','_'))\"><img src='' alt='Try Reloding page,Image error'><div id='card_data'></div>"+
 						"<div><center><h1 id='novel_title'>"+data[keyid].name+"</h1></center></div></div>";
 						console.log("Cover Image Not Found: "+err);
 						});
@@ -218,7 +237,7 @@ function showFullCard(name){
 				  var data=snapshot.val();
 					firebase.storage().ref(data["img"]).getDownloadURL().then((url)=>{
 						division.innerHTML+="<div class='fullcard'><img src=\""+url+"\"><div id='fullcard_data'><h1 id='novel_title'>"+data["name"]+
-						"</h1><span class='fullcard_stat'><table><tr><th>Author</th><td>"+data["author"]+"</td></tr><tr><th>Chapters</th><td>"+data["chapter"]+"</td></tr><tr><th>Genre</th><td>"+data["genre"]+"</td></tr><tr><th>Status</th><td>"+data["stat"]+"</td></tr><tr><th>Views</th><td>"+data["views"]+"</td></tr><tr><th>Last Updated</th><td>"+usertime(data["updated"])+"</td></tr><tr><th>likes</th><td>"+data.likes+"</td></tr></table></span></div><div class='card_btn'><button id='read' class='novel_card_btn' onclick=\"setSessionVariable(this.parentElement.parentElement.querySelector('#novel_title').innerHTML.replaceAll(' ','_'),flag=true)\">Read</button><button id='share' class='novel_card_btn'>Share</button><button id='patreon' class='novel_card_btn'>Patreon</button><button id='discord' class='novel_card_btn'>Discord</button><button id='webnovel' class='novel_card_btn'>Webnovel</button></div></div>"+
+						"</h1><span class='fullcard_stat'><table><tr><th>Author</th><td>"+data["author"]+"</td></tr><tr><th>Chapters</th><td>"+data["chapter"]+"</td></tr><tr><th>Genre</th><td>"+data["genre"]+"</td></tr><tr><th>Status</th><td>"+data["stat"]+"</td></tr><tr><th>Views</th><td>"+data["views"]+"</td></tr><tr><th>Last Updated</th><td>"+usertime(data["updated"])+"</td></tr><tr><th>likes</th><td>"+data.likes+"</td></tr><tr><th>tags</th><td>"+data.tags+"</td></tr></table></span></div><div class='card_btn'><button id='read' class='novel_card_btn' onclick=\"setSessionVariable(this.parentElement.parentElement.querySelector('#novel_title').innerHTML.replaceAll(' ','_'),flag=true)\">Read</button><button id='share' class='novel_card_btn'>Share</button><button id='patreon' class='novel_card_btn'>Patreon</button><button id='discord' class='novel_card_btn'>Discord</button><button id='webnovel' class='novel_card_btn'>Webnovel</button></div></div>"+
 						"</div>";
 						document.getElementById("synopsys_data").innerHTML=data["synopsys"];
 					}).catch((err)=>{console.log(err);fun()})
@@ -432,7 +451,7 @@ function ifExistIn(pr,ch){
 }
 function home(){
 	sessionStorage.clear();
-	window.location="https://bingefics.com";
+	window.location="http://https://bingefics.com";
 }
 
 var text=document.querySelectorAll("#synopsys_data");
@@ -456,6 +475,7 @@ function loadcontent(name){
 		}
 	}).catch((error) =>{loadcontent(name)});
 }
+
 
 
 	
