@@ -83,17 +83,20 @@
 	text-align:left;
 }
 #synopsis, #tbc{
-	font-size:72px;
+	font-size:36px;
 	font-weight:bolder;
 	color:white;
 	text-shadow:1px 1px 10px black;
-	padding:80px 0px 30px 0;
-	border-bottom:2px solid #eee; 
+	padding:80px 40px 30px 40px;
 	text-align:left;
+	transition:all 0.3s linear;
+	cursor:pointer;
 }
 .synopsys_data{
+	padding:40px 0px 0px 0px;
 	text-align:left;
 	color:white;
+	font-size:20px;
 }
 .card_btn{
 	height:100%;
@@ -103,6 +106,7 @@
     justify-content: space-evenly;
     align-items: center;
 }
+
 td{
 	font-weight: normal;
     text-align: left;
@@ -133,11 +137,15 @@ td{
   </div>
   <div class="mainBody">
 		<div class="card_holdr" id="card_holder"></div>
-		<div><h1 id="synopsis">Synopsis</h1></div>
-		<div class="synopsys_data" id="synopsys_data"></div>
-		<div><h1 id="tbc">Table of Content</h1></div>
-		<div class="content" id="content">
-			<ol id="innercontent"></ol>
+		<div class="contentNav">
+			<div><h1 id="synopsis" onmouseover="setcontentdata(this.id)">Synopsis</h1></div>
+			<div><h1 id="tbc" onmouseover="setcontentdata(this.id)">Table of Content</h1></div>
+		</div>
+		<div class=slide_content>
+			<div class="synopsys_data" id="synopsys_data"></div>
+			<div class="content" id="content">
+				<ol id="innercontent"></ol>
+			</div>
 		</div>
   </div>
   
@@ -159,6 +167,7 @@ td{
 
 	<script src="main.js"></script>
   <script>
+  
   var novels_data={
 		novel1:{
 				name:"New Gamer's Multiverse",
