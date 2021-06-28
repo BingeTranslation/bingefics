@@ -451,7 +451,7 @@ function ifExistIn(pr,ch){
 }
 function home(){
 	sessionStorage.clear();
-	window.location="http://https://bingefics.com";
+	window.location="https://bingefics.com";
 }
 
 var text=document.querySelectorAll("#synopsys_data");
