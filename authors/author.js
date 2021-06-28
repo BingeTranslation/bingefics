@@ -19,18 +19,21 @@ const chapter_upload=(ele)=>{
 	firebase.database().ref("Novels/"+dataArray[0].value.replaceAll(" ","_").replaceAll("Selected_book:_","")).get().then((content)=>{
 		console.log("found");
 			try{
-			const count=Object.keys(content.val().data).length;
+			 count=Object.keys(content.val().data).length;
 			}catch(err){
-				const count=0;
+				 count=0;
 			}
+			if(isNaN(count)){
+				 count=0;
+			 }
 			const chcontent="<h1>Chapter: "+(count+1)+" - "+dataArray[1].value+"</h1><br><br><p id=\'chdata\'>"+document.getElementById("text_area").innerHTML+"</p><br><br><br>";
 			data=content.val().data;
 			data+=chcontent;
 			firebase.database().ref("Novels/"+name+"/updated").set(Date()).then((snapshot)=>{alert("time updated")});
-			firebase.database().ref("Novels/"+name+"/data/Chapter_"+(count+1)).set(data).then((a)=>{alert("chapter content updated");
-			console.log(Object.keys(content.val().data).length);
+			firebase.database().ref("Novels/"+name+"/data/Chapter_"+(parseInt(Object.keys(content.val().data).length)+1)).set(data).then((a)=>{alert("chapter content updated");
+			count=Object.keys(content.val().data).length;
 			console.log(content.val().data);
-			firebase.database().ref("Novels/"+name+"/chapter").set(parseInt(count)+1).then((snapshot)=>{alert("chapter count updated")});});
+			firebase.database().ref("Novels/"+name+"/chapter").set(count+1).then((snapshot)=>{alert("chapter count updated")});});
 		
 	}).catch((err)=>{console.log(err)});
 }
@@ -195,7 +198,8 @@ const getauthornovels=(data)=>{
 			
 			
 var provider = new firebase.auth.GoogleAuthProvider();
-			firebase.auth().languageCode = 'en';
+			provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+			firebase.auth().languageCode = 'it';
 			firebase.auth()
 			  .signInWithPopup(provider)
 			  .then((result) => {
@@ -229,7 +233,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
 				firebase.database().ref("Authors/").get().then((snapshot)=>{
 					for(i in snapshot.val()){
 						if(i==profile){
-							sessionStorage.setItem("novels",stringify(snapshot.val()[profile].novels));
+							localStorage.setItem("novels",stringify(snapshot.val()[profile].novels));
 							authorData=snapshot.val()[profile];
 							firebase.database().ref("Authors/"+profile+"/picURL").set(data.picURL);
 							document.getElementById("authorPic").src=data.picURL;
@@ -284,8 +288,8 @@ var provider = new firebase.auth.GoogleAuthProvider();
 			}
 			try{
 			window.addEventListener('load', function(){
-				document.getElementById('text_area').setAttribute('contenteditable', 'true');
-				document.getElementById('urlfield').setAttribute('contenteditable', 'true');
+				//document.getElementById('text_area').setAttribute('contenteditable', 'true');
+				//document.getElementById('urlfield').setAttribute('contenteditable', 'true');
 			});
 			}
 			catch(err){
