@@ -6,8 +6,14 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script data-ad-client="ca-pub-4948806567577681" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<meta name="google-signin-client_id" content="644677952219-n51d1kos67pgj2g638kqd3er1dibrdde.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="644677952219-krdae2qc2jd58ha0fn45u17rldtbrlk7.apps.googleusercontent.com">
+<!--<meta name="google-signin-client_id" content="644677952219-n51d1kos67pgj2g638kqd3er1dibrdde.apps.googleusercontent.com">-->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
 
 <style>
 .mainBody{
@@ -22,6 +28,11 @@
     text-align: center;
     justify-content: center;
     flex-direction: column;
+}
+#webnovel{
+	background:url("images/webnovel.png");
+	background-size:cover;
+	padding: 30px;
 }
 .fullcard{
 	background: #efefef;
@@ -183,8 +194,8 @@ td{
 			}
   }
   //showCards(novels_data);
-  showFullCard(sessionStorage.getItem("name"));
-  loadcontent(sessionStorage.getItem("name"));
+  showFullCard(localStorage.getItem("name"));
+  loadcontent(localStorage.getItem("name"));
   //readOnceWithGet();
   //saveToFirebase(novels_data);
   
