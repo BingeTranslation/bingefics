@@ -36,7 +36,7 @@ const setcontentdata=(ele)=>{
 
 function redirect(sessionVar){
 	setSessionVariable(sessionVar);
-	window.location=window.location+"/view_novel.html"
+	window.location=window.location+"view_novel.html"
 }
 var novelCoverUrl;
 function showCards(data){
