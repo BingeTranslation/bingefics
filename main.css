@@ -123,17 +123,21 @@ h1{
 }
 
 .novel_card_btn{
-	width:300px;
-	padding:15px;
+	width:60px;
 	color:white;
+	padding:15px;
 	background: #FFB75E;  /* fallback for old browsers */
 	background: -webkit-linear-gradient(to right, #ED8F03, #FFB75E);  /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(to right, #ED8F03, #FFB75E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-	font-size:15px;
+	font-size:20px;
 	font-weight:bolder;
 	border:none;
 	border-radius:30px;
-	display:inline;
+	display:flex;
+	flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 .novel_card_btn:hover{
 	opacity:0.8;
@@ -175,10 +179,12 @@ h1{
 
 }
 #patreon{
-	background: #abcd52;  /* fallback for old browsers */
-	background: -webkit-linear-gradient(to right, #123Fab, #76b852);  /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to right, #8DC26F, #76b852); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: red;  /* fallback for old browsers */
 
+}
+#discord{
+	background: #333;
+    color: white;
 }
 .editor{
 	width:600px;
