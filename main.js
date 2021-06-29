@@ -470,7 +470,7 @@ function loadcontent(name){
 	firebase.database().ref("Novels/"+name+"/data").get().then((snapshot)=>{
 		if(snapshot.exists()){
 			for(i in snapshot.val()){
-				document.getElementById("innercontent").innerHTML+="<li>"+i.replaceAll("_"," ")+"</li>";
+				document.getElementById("innercontent").innerHTML+="<li onmouseover=\"localStorage.setItem('child','"+i+"');\"><a href='read.html'>"+i.replaceAll("_"," ")+"</a></li>";
 			}	
 		}
 	}).catch((error) =>{loadcontent(name)});
