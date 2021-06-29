@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap" rel="stylesheet">
 <script src="fonts.js"></script>
 <script>
-	document.title=sessionStorage.getItem("name");
+	document.title=localStorage.getItem("name");
 	
 </script>
 <style>
@@ -101,21 +101,32 @@ input{
 	
 	
 	<script src="main.js"></script>
+	<script src="font.js"></script>
 	<script>
 	var content;
 	var like;
-	var liked_novel_list=sessionStorage.getItem("liked_novels").replaceAll("\"","").replaceAll("[","").replaceAll("]","").replaceAll("\\","").split(",");
+	var liked_novel_list=localStorage.getItem("liked_novels").replaceAll("\"","").replaceAll("[","").replaceAll("]","").replaceAll("\\","").split(",");
 	function checkIfLiked(){
 		for(i in liked_novel_list){
-			if(sessionStorage.getItem("name")==liked_novel_list[i]){
+			if(localStorage.getItem("name")==liked_novel_list[i]){
 				document.getElementById("like").className='like liked';
 				break;
 			}
 		}
 	}
 	
+	window.onload = function () {
+		if(window.location.href.split("?").length>1){
+			tempuri=window.location.href.split("?");
+			localStorage.setItem("child",tempuri[1].split("#")[0]);
+		}
+		else if(window.location.href.split("#").length>1){
+			tempuri=window.location.href.split("#");
+			window.location.href=tempuri[0];
+		}
+	}
 	function updatedlikes(){
-		const dbRead=firebase.database().ref("Novels/"+sessionStorage.getItem("name"));
+		const dbRead=firebase.database().ref("Novels/"+localStorage.getItem("name"));
 		dbRead.get().then((snapshot)=>{
 			if(snapshot.exists()){
 				viewers=snapshot.val().viewers.replaceAll("\"","").replaceAll("[","").replaceAll("]","").replaceAll("\\","").split(",");
@@ -131,12 +142,15 @@ input{
 						i.src=url;
 					}).catch((err)=>{});
 				})
+				if(localStorage.getItem("child"))
+				window.location+="#"+localStorage.getItem("child");
+				localStorage.setItem("child","");
 			}
 		}).catch((err)=>{updatedlikes()})
-		firebase.database().ref("GUsers/"+sessionStorage.getItem("UserdbHandle")+"/liked_novels").get().then((snapshot)=>{
+		firebase.database().ref("GUsers/"+localStorage.getItem("UserdbHandle")+"/liked_novels").get().then((snapshot)=>{
 			if(snapshot.exists()){
 				liked_novel_list=snapshot.val().replaceAll("\"","").replaceAll("[","").replaceAll("]","").replaceAll("\\","").split(",");
-				sessionStorage.setItem("liked_novels",stringify(liked_novel_list));
+				localStorage.setItem("liked_novels",stringify(liked_novel_list));
 				checkIfLiked();
 			}
 		}).catch((err)=>{updatedlikes()})
@@ -144,10 +158,10 @@ input{
 	var viewers=[];
 	
 	updatedlikes();
-	if(!ifExistIn(viewers,sessionStorage.getItem("UserdbHandle"))){
-					viewers.push(sessionStorage.getItem("UserdbHandle"))
-					firebase.database().ref("Novels/"+sessionStorage.getItem("name")+"/views").set(viewers.length).then((snapshot)=>{console.log("view count updated")});
-					firebase.database().ref("Novels/"+sessionStorage.getItem("name")+"/viewers").set(stringify(viewers)).then((snapshot)=>{console.log("viewer list updated")});
+	if(!ifExistIn(viewers,localStorage.getItem("UserdbHandle"))){
+					viewers.push(localStorage.getItem("UserdbHandle"))
+					firebase.database().ref("Novels/"+localStorage.getItem("name")+"/views").set(viewers.length).then((snapshot)=>{console.log("view count updated")});
+					firebase.database().ref("Novels/"+localStorage.getItem("name")+"/viewers").set(stringify(viewers)).then((snapshot)=>{console.log("viewer list updated")});
 				
 				}
 	function setfontweight(){
@@ -173,7 +187,8 @@ input{
 		else if(num<=54 && num>=0){
 			const eles=document.querySelectorAll(".chapters p span")
 			for(i in eles){
-				eles[i].style.fontSize=num;
+			try{
+				eles[i].style.fontSize=num;}catch(er){}
 			}
 		}
 	}
@@ -211,26 +226,29 @@ input{
 	})
 	function setFont(font){
 		document.getElementById("chapters").style.fontFamily=font;
-		var elelist=document.querySelectorAll("#chdata");
+		var elelist=document.querySelectorAll(".chapters p span");
+		document.querySelector(".chapters").style.fontFamily=font;
 		for(i in elelist){
-			elelist[i].style.fontFamily=font;
+			try{
+			elelist[i].style.fontFamily=font;}
+			catch(er){};
 		}
 	}
 	function updatelike(){
 		if(document.getElementById("like").className=='like'){
-			if(!existIn(liked_novel_list,sessionStorage.getItem("name")))
-				liked_novel_list.push(sessionStorage.getItem("name"));
-			firebase.database().ref("GUsers/"+sessionStorage.getItem("UserdbHandle")+"/liked_novels").set(stringify(liked_novel_list))
+			if(!existIn(liked_novel_list,localStorage.getItem("name")))
+				liked_novel_list.push(localStorage.getItem("name"));
+			firebase.database().ref("GUsers/"+localStorage.getItem("UserdbHandle")+"/liked_novels").set(stringify(liked_novel_list))
 			updatedlikes();
-			firebase.database().ref("Novels/"+sessionStorage.getItem("name")+"/likes").set(like+1)
+			firebase.database().ref("Novels/"+localStorage.getItem("name")+"/likes").set(like+1)
 			.then(function(){document.getElementById("like").className='like liked';})
 			updatedlikes();
 		}
 		else{
-			liked_novel_list.splice(liked_novel_list.indexOf(sessionStorage.getItem("name"),1))
-			firebase.database().ref("GUsers/"+sessionStorage.getItem("UserdbHandle")+"/liked_novels").set(stringify(liked_novel_list))
+			liked_novel_list.splice(liked_novel_list.indexOf(localStorage.getItem("name"),1))
+			firebase.database().ref("GUsers/"+localStorage.getItem("UserdbHandle")+"/liked_novels").set(stringify(liked_novel_list))
 			updatedlikes();
-			firebase.database().ref("Novels/"+sessionStorage.getItem("name")+"/likes").set(like-1)
+			firebase.database().ref("Novels/"+localStorage.getItem("name")+"/likes").set(like-1)
 			.then(function(){document.getElementById("like").className='like'})
 		}
 	}
