@@ -118,7 +118,9 @@ input{
 	window.onload = function () {
 		if(window.location.href.split("?").length>1){
 			tempuri=window.location.href.split("?");
-			localStorage.setItem("child",tempuri[1].split("#")[0]);
+			localStorage.setItem("name",tempuri[1].replaceAll(" ","_"));
+			localStorage.setItem("child",tempuri[2].split("#")[0]);
+			window.location.href=tempuri[0];
 		}
 		else if(window.location.href.split("#").length>1){
 			tempuri=window.location.href.split("#");
