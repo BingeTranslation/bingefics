@@ -178,21 +178,17 @@ td{
 	<script src="main.js"></script>
   <script>
   
-  var novels_data={
-		novel1:{
-				name:"New Gamer's Multiverse",
-				author:"TheGodSage",
-				synopsys:"They say games are meant to end... but this one might be hard to. Zinon, a translator in his past life for fanfic called Marvel's superman, dies and is instantly disrupted in his peaceful rest by the sound of a system...<br>\"Congratulations! You have been chosen by TheGodSage to be the host of the Gamer system... Oh, wait... TheSmutSystem!\"Follow Zinon in his life of Games and debauchery, all while getting stronger to kill his good old friend TheGodSage!<br><br>",
-				img:"images/3b47adb20fbfcbb31b5684430fa8a33b.jpg",
-				chapter:0,
-				genre:'Adventure',
-				stat:"Coming Soon",
-				updated:Date(),
-				views:0,
-				likes:0
-			}
-  }
-  //showCards(novels_data);
+ window.onload = function () {
+		if(window.location.href.split("?").length>1){
+			tempuri=window.location.href.split("?");
+			localStorage.setItem("name",tempuri[1].replaceAll(" ","_").replaceAll("%27","'"));
+			window.location.href=tempuri[0];
+		}
+		else if(window.location.href.split("#").length>1){
+			tempuri=window.location.href.split("#");
+			window.location.href=tempuri[0];
+		}
+	}
   showFullCard(localStorage.getItem("name"));
   loadcontent(localStorage.getItem("name"));
   //readOnceWithGet();
