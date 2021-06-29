@@ -291,8 +291,8 @@ function readOnceWithGet() {
 			}
 			
 function setSessionVariable(name, flag=false){
-			sessionStorage.setItem("name",name)
-			sessionStorage.setItem("liked_novels","");
+			localStorage.setItem("name",name)
+			localStorage.setItem("liked_novels","");
 			if(flag)window.location.replace("read.html");
 }
 var accdata;
@@ -301,7 +301,7 @@ function GaccExist(profile,data){
 	firebase.database().ref("GUsers/").get().then((snapshot)=>{
 		for(i in snapshot.val()){
 			if(i==profile){
-				sessionStorage.setItem("liked_novels",stringify(snapshot.val()[profile].liked_novels));
+				localStorage.setItem("liked_novels",stringify(snapshot.val()[profile].liked_novels));
 				console.log("welcome")
 				return true;
 			}
@@ -323,7 +323,7 @@ function onSignIn(googleUser) {
 		  email:profile.getEmail(),
 		  liked_novels:","
 	  };
-	sessionStorage.setItem("UserdbHandle",profile.getEmail().replaceAll('.','(dot)'))
+	localStorage.setItem("UserdbHandle",profile.getEmail().replaceAll('.','(dot)'))
 	GaccExist(profile.getEmail().replaceAll('.','(dot)'),data);
 	
 
@@ -341,7 +341,7 @@ function onSignIn(googleUser) {
 
 function signOut(){
 	gapi.auth2.getAuthInstance().signOut();
-	sessionStorage.clear();
+	localStorage.clear();
 	document.getElementById("SignIn").className='g-signin2';
 	window.location.reload();
 	}
@@ -450,7 +450,7 @@ function ifExistIn(pr,ch){
 	return false;
 }
 function home(){
-	sessionStorage.clear();
+	localStorage.clear();
 	window.location="https://bingefics.com";
 }
 
