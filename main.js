@@ -240,6 +240,10 @@ function showFullCard(name){
 						"</h1><span class='fullcard_stat'><table><tr><th>Author</th><td>"+data["author"]+"</td></tr><tr><th>Chapters</th><td>"+data["chapter"]+"</td></tr><tr><th>Genre</th><td>"+data["genre"]+"</td></tr><tr><th>Status</th><td>"+data["stat"]+"</td></tr><tr><th>Views</th><td>"+data["views"]+"</td></tr><tr><th>Last Updated</th><td>"+usertime(data["updated"])+"</td></tr><tr><th>likes</th><td>"+data.likes+"</td></tr><tr><th>tags</th><td>"+data.tags+"</td></tr></table></span></div><div class='card_btn'><button id='read' class='novel_card_btn' onclick=\"setSessionVariable(this.parentElement.parentElement.querySelector('#novel_title').innerHTML.replaceAll(' ','_'),flag=true)\">&#128214;</button><button id='share' class='novel_card_btn'><i class=\"fa fa-share-alt\"></i></button><button id='patreon' class='novel_card_btn'><i class=\"fab fa-patreon\"></i></button><button id='discord' class='novel_card_btn'><i class=\"fab fa-discord\"></i></button><button id='webnovel' class='novel_card_btn'></button></div></div>"+
 						"</div>";
 						document.getElementById("synopsys_data").innerHTML=data["synopsys"];
+						document.getElementById("share").addEventListener("click",()=>{
+							navigator.clipboard.writeText('https://bingefics.com/view_novel?'+localStorage.getItem("name"));
+							alert('Share link Copied to clipboard')
+							})
 					}).catch((err)=>{console.log(err);fun()})
 				} else {
 				  console.log("No data available");
@@ -470,7 +474,7 @@ function loadcontent(name){
 	firebase.database().ref("Novels/"+name+"/data").get().then((snapshot)=>{
 		if(snapshot.exists()){
 			for(i in snapshot.val()){
-				document.getElementById("innercontent").innerHTML+="<li onmouseover=\"localStorage.setItem('child','"+i+"');\"><a href='read.html'>"+i.replaceAll("_"," ")+"</a></li>";
+				document.getElementById("innercontent").innerHTML+="<li onmouseover=\"localStorage.setItem('child','"+i+"');\"><a href='read.html?"+localStorage.getItem('name')+"?"+i+"'>"+i.replaceAll("_"," ")+"</a></li>";
 			}	
 		}
 	}).catch((error) =>{loadcontent(name)});
