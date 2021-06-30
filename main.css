@@ -299,6 +299,7 @@ input[type=radio]{
     text-align: center;
     justify-content: center;
     flex-direction: column;
+	width:70%;
 }
 
 .content{
