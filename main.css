@@ -79,18 +79,17 @@ h1{
 	from{top:0;left:0}
 }
 
-.card_holder {
-    position: relative;
-    top: 100px;
+.card_holder{
     border-radius: 10px 10px 10px 10px;
-    padding: 25px;
+    padding: 12px;
     display: flex;
+	width:75%;
     animation: comeIn 1s;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;;
 }
 .card img{
 	width:300px;
@@ -287,6 +286,19 @@ body{
 input[type=radio]{
 	opacity:0.1;
 	
+}
+
+.mainBody{
+	position: absolute;
+    transform: translate(-50%);
+    left: 50%;
+	top:100px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .content{
