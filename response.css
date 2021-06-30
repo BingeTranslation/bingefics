@@ -1,18 +1,18 @@
-@media(max-width:1000px){
+@media(max-width:1024px){
 	.fullcard{
 		flex-wrap:wrap;
 	}
 	.mainBody {
-    position: absolute;
-    width: 100%;
-    top: 100px;
-    display: flex;
-    flex-wrap: nowrap;
-    align-content: center;
-    text-align: center;
-    justify-content: center;
-    flex-direction: column;
-    align-items: stretch;
+	    position: absolute;
+	    width: 100%;
+	    top: 100px;
+	    display: flex;
+	    flex-wrap: nowrap;
+	    align-content: center;
+	    text-align: center;
+	    justify-content: center;
+	    flex-direction: column;
+	    align-items: stretch;
 	}
 	
 	body {
