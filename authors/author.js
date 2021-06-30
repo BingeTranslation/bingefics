@@ -54,8 +54,9 @@ const novelupload=(ele)=>{
 		tags:stringify(taglist),
 		chapter:0,
 		data:new Object(),
+		patreon:dataArray[2].value;
+		webnovel:dataArray[3].value;
 	}
-	console.log(data);
 	firebase.database().ref("Novels/"+data.name.replaceAll(" ","_")).set(data).then((e)=>{
 		alert("Novel Data Uploaded");
 		firebase.storage().ref(data.img).put(document.querySelectorAll('input#coverimage')[0].files[0]).then((a)=>{
