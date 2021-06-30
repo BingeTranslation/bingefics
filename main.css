@@ -80,8 +80,6 @@ h1{
 }
 
 .card_holder{
-	position: relative;
-    top: 100px;
     border-radius: 10px 10px 10px 10px;
     padding: 12px;
     display: flex;
@@ -122,6 +120,10 @@ h1{
 	top:0px;
 }
 
+.links{
+	position: relative;
+    top: 100px;
+}
 .novel_card_btn{
 	width:60px;
 	color:white;
@@ -290,7 +292,8 @@ input[type=radio]{
 	padding:0px;
 	transform:translateX(-50%);
 	position:relative;
-	left:50%;	
+	left:50%;
+	width:0%;
 	margin-bottom:50px;
 }
 
@@ -352,4 +355,12 @@ div#mbc {
 .contentNav{
 	display:flex;
 	flex-wrap:nowrap;
+}
+
+div#fullcard_data {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-around;
+    align-content: stretch;
 }
