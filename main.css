@@ -79,17 +79,18 @@ h1{
 	from{top:0;left:0}
 }
 
-.card_holder{
+.card_holder {
+    position: relative;
+    top: 100px;
     border-radius: 10px 10px 10px 10px;
-    padding: 12px;
+    padding: 25px;
     display: flex;
-	width:75%;
     animation: comeIn 1s;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
     align-items: center;
-    justify-content: center;;
+    justify-content: flex-start;
 }
 .card img{
 	width:300px;
