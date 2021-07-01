@@ -144,6 +144,7 @@ input{
 				like=snapshot.val().likes;
 				for(i in snapshot.val().data)
 					document.getElementById("chapters").innerHTML+=snapshot.val().data[i];
+				setFont("'Merriweather', serif");
 				var imglist=document.querySelectorAll("#chimage");
 				imglist.forEach((i)=>{
 					firebase.storage().ref(i.getAttribute("tempsrc")).getDownloadURL().then((url)=>{
