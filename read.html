@@ -203,19 +203,24 @@ input{
 	}
 	
 	function settheme(){
+		const array=document.getElementById("chapters").getElementsByTagName("h1");
 		if(document.getElementById("theme").innerHTML=="Dark"){
 			document.getElementById("theme").innerHTML='Light';
 			document.getElementById("theme").style.background='#222';
 			document.getElementById("theme").style.color='#fff';
 			document.getElementById("chapters").className='chapters light';
-			document.getElementById("chapters").getElementsByTagName("p").style.color='#fff';
+			for(i=0;i<array.length;i++){
+				array[i].style.color='#fff';
+			}
 		}
 		else{
 			document.getElementById("theme").innerHTML="Dark";
 			document.getElementById("theme").style.background='#fff';
 			document.getElementById("theme").style.color='#111';
 			document.getElementById("chapters").className='chapters dark';
-			document.getElementById("chapters").getElementsByTagName("p").style.color='#111';
+			for(i=0;i<array.length;i++){
+				array[i].style.color='#111';
+			}
 		}
 	}
 	
