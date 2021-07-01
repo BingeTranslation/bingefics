@@ -97,7 +97,7 @@ input{
 		</div>
 	<div class="chapters light" id="chapters"></div>
 	<button class="like" id="like" onclick="updatelike()">&#10084;</button>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
 
 	<!-- TODO: Add SDKs for Firebase products that you want to use
@@ -144,6 +144,7 @@ input{
 				for(i in snapshot.val().data)
 					document.getElementById("chapters").innerHTML+=snapshot.val().data[i].replaceAll("[object Object]","");
 				setFont("'Merriweather', serif");
+				setfontsize(20);
 				var imglist=document.querySelectorAll("#chimage");
 				imglist.forEach((i)=>{
 					firebase.storage().ref(i.getAttribute("tempsrc")).getDownloadURL().then((url)=>{
