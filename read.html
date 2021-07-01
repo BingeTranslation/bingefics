@@ -56,8 +56,8 @@ input{
 	text-align:center;
 }
 #theme{
-	background:#222;
-	color:white;
+	background:#fff;
+	color:#111;
 }
 #chapters img{
 	width:100%;
@@ -79,7 +79,7 @@ input{
 	</div>
 	<div class="editor">
 			<ul>
-				<li><button onclick="settheme()" id="theme">Light</button></li>
+				<li><button onclick="settheme()" id="theme">Dark</button></li>
 				<li><button onclick="setfontsize(parseInt(nextSibling.value - 1));nextSibling.value-=1">-</button><input onkeyup="setfontsize(parseInt(this.value))" id="fsize" value=20 size=2 readonly>
 				<button onclick="previousElementSibling.value=parseInt(previousElementSibling.value)+1;setfontsize(parseInt(previousElementSibling.value));">+</button></li>
 				<select onchange="setFont(this.value)">
