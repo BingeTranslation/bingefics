@@ -14,6 +14,8 @@
 	<div class="logoHolder">
 		<img class="logo" src="images/logo3.png" />
 		<span>
+		<h1>Binge Fics</h1>
+		</span>
 	</div>
 		<ul class=log id="log">
 			<li onclick="return home()">HOME</li>
@@ -26,12 +28,17 @@
 				</li>
 			
 		</ul>
-		<div >
-			
-			
-		</div>
+		
   </div>
+ 
   <div class="links">
+	<div class=sectiontitle><h1>Library</h1></div>
+	<div class="card_holder" id="card_holder">
+	</div>
+  </div>
+
+  <div class="links">
+    <div class=sectiontitle><h1>Updates</h1></div>	
 	<div class="card_holder" id="card_holder">		
 	</div>
   </div>
@@ -52,45 +59,8 @@
 
 	<script src="main.js"></script>
   <script>
-  var novels_data={
-		novel1:{
-				name:"New Gamer's Multiverse",
-				author:"TheGodSage",
-				synopsys:"They say games are meant to end... but this one might be hard to. Zinon, a translator in his past life for fanfic called Marvel's superman, dies and is instantly disrupted in his peaceful rest by the sound of a system...<br>\"Congratulations! You have been chosen by TheGodSage to be the host of the Gamer system... Oh, wait... TheSmutSystem!\"Follow Zinon in his life of Games and debauchery, all while getting stronger to kill his good old friend TheGodSage!<br><br>",
-				img:"images/3b47adb20fbfcbb31b5684430fa8a33b.jpg",
-				chapter:0,
-				genre:'Adventure',
-				stat:"Coming Soon",
-				updated:Date(),
-				views:0,
-				likes:0
-			}
-  }
-  //showCards(novels_data);
   readOnceWithGet();
-  sessionStorage.setItem("name",novels_data.novel1.name.replaceAll(' ','_'));
-  //readOnceWithGet();
-  //saveToFirebase(novels_data);
-  /*var text=document.querySelectorAll("#synopsys");
-  var novel_name=document.querySelectorAll("#novel_title");
-  //loading font
-  const bangersFont = new FontFace('try', 'url(font/Poppins-Italic.ttf)');
-  bangersFont.load().then(function(loadedFont) {
-    document.fonts.add(loadedFont)
-	for(i=0;i<text.length;i++)
-		text[i].style.fontFamily = '"try"';
-		}).catch(function(error) {
-			console.log('Failed to load font: ' + error)
-		})
-	const Limelight_Regular = new FontFace('Limelight_Regular', 'url(font/Poppins-Medium.ttf)');
-	  Limelight_Regular.load().then(function(loadedFont) {
-		document.fonts.add(loadedFont)
-		for(i=0;i<novel_name.length;i++)
-			novel_name[i].style.fontFamily = '"Limelight_Regular"';
-			}).catch(function(error) {
-				console.log('Failed to load font: ' + error)
-			})*/
+  localStorage.setItem("name",novels_data.novel1.name.replaceAll(' ','_'));
   </script>
-  
 </body>
 </html>
