@@ -26,7 +26,7 @@ const chapter_upload=(ele)=>{
 			if(isNaN(count)){
 				 count=0;
 			 }
-			const chcontent="<h1>Chapter: "+(count+1)+" - "+dataArray[1].value+"</h1><br><br><p id=\'chdata\'>"+document.getElementById("text_area").innerHTML+"</p><br><br><br>";
+			const chcontent="<h1 id='Chapter_'"+(count+1)+">Chapter: "+(count+1)+" - "+dataArray[1].value+"</h1><p id=\'chdata\'>"+document.getElementById("text_area").innerHTML+"</p><br><br><br>";
 			data=content.val().data;
 			data+=chcontent;
 			firebase.database().ref("Novels/"+name+"/updated").set(Date()).then((snapshot)=>{alert("time updated")});
