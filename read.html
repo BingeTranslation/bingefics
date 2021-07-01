@@ -142,7 +142,7 @@ input{
 				viewers=snapshot.val().viewers.replaceAll("\"","").replaceAll("[","").replaceAll("]","").replaceAll("\\","").split(",");
 				like=snapshot.val().likes;
 				for(i in snapshot.val().data)
-					document.getElementById("chapters").innerHTML+=snapshot.val().data[i];
+					document.getElementById("chapters").innerHTML+=snapshot.val().data[i].replaceAll("[object Object]","");
 				setFont("'Merriweather', serif");
 				var imglist=document.querySelectorAll("#chimage");
 				imglist.forEach((i)=>{
