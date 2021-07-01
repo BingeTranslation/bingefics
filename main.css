@@ -219,6 +219,9 @@ h1{
 	position:fixed;
 	z-index:999;
 	border-radius:50px;
+	transform: translateX(-50%);
+    	left: 50%;
+    	top: 90px;
 }
 .editor li{
 	float:left;
