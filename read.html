@@ -139,9 +139,6 @@ input{
 			if(snapshot.exists()){
 				viewers=snapshot.val().viewers.replaceAll("\"","").replaceAll("[","").replaceAll("]","").replaceAll("\\","").split(",");
 				like=snapshot.val().likes;
-				content="<h1>"+snapshot.val().name+"</h1><h2>Synopsys</h2>"+snapshot.val().synopsys;
-				document.getElementById("chapters").innerHTML=content;
-				//console.log(snapshot.val())
 				for(i in snapshot.val().data)
 					document.getElementById("chapters").innerHTML+=snapshot.val().data[i];
 				var imglist=document.querySelectorAll("#chimage");
