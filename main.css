@@ -17,10 +17,16 @@ title{
 }
 
 .header{
-	position:fixed;
-	width:100%;
-	z-index:100;
-	padding:0px 10px 0px 10px;
+	position: fixed;
+    width: 100%;
+    z-index: 100;
+    padding: 0px 10px 0px 10px;
+    background: #FF4E50;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
 }
 .navigation{
 	padding:10px 0 10px 0;
@@ -79,17 +85,29 @@ h1{
 	from{top:0;left:0}
 }
 
-.card_holder{
-    border-radius: 10px 10px 10px 10px;
-    padding: 12px;
-    display: flex;
-	width:75%;
-    animation: comeIn 1s;
-    flex-direction: row;
-    flex-wrap: wrap;
+.sectiontitle{
+	display: flex;
+    width: 200px;
+    justify-content: center;
     align-content: center;
     align-items: center;
-    justify-content: center;;
+    background: rgba(99,99,99,0.5);
+    border-radius: 10px 0px 0px 10px;
+	min-height:400px;
+}
+
+.card_holder{
+    border-radius: 0px 10px 10px 0px;
+    padding: 12px;
+    display: flex;
+    animation: comeIn 1s;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    background: rgba(99,99,99,0.5);
+    flex-wrap: wrap;
+	min-width:80%;
 }
 .card img{
 	width:300px;
@@ -122,7 +140,12 @@ h1{
 
 .links{
 	position: relative;
-    top: 100px;
+    top: 120px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+	margin-bottom:50px;
 }
 .novel_card_btn{
 	width:60px;
@@ -258,9 +281,12 @@ select{
 	border-radius:100px;
 }
 .logoHolder{
-	display:flex;
-	flex_wrap:nowrap;
-	position:fixed;
+	display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
 }
 body{
 	background:url("images/logoBack.jpg");
@@ -299,7 +325,6 @@ input[type=radio]{
     text-align: center;
     justify-content: center;
     flex-direction: column;
-	width:70%;
 }
 
 .content{
