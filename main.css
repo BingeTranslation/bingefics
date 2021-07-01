@@ -107,7 +107,7 @@ h1{
     justify-content: center;
     background: rgba(99,99,99,0.5);
     flex-wrap: wrap;
-	min-width:80%;
+    min-width: 90%;
 }
 .card img{
 	width:300px;
@@ -145,7 +145,8 @@ h1{
     flex-wrap: nowrap;
     align-items: stretch;
     justify-content: flex-start;
-	margin-bottom:50px;
+    margin-bottom: 50px;
+    overflow: hidden;
 }
 .novel_card_btn{
 	width:60px;
