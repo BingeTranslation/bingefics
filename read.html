@@ -229,9 +229,9 @@ input{
 			document.getElementById("I").style.color='#fff';
 		}
 	}
-	document.onload.then((e)=>{
+	document.onload=(e)=>{
 		setFont("'Merriweather', serif");
-	})
+	}
 	function setFont(font){
 		document.getElementById("chapters").style.fontFamily=font;
 		var elelist=document.querySelectorAll(".chapters p span");
